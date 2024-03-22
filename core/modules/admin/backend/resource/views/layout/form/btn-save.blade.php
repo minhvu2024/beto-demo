@@ -1,0 +1,1 @@
+<button type="button" class="btn btn-default btn-md" onclick="event.preventDefault(); document.getElementById('{{$name}}').submit();"> {!! @z_language(["Save"]) !!} </button>

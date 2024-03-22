@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="description" content="docsify-tabs - A docsify.js plugin for rendering tabbed content from markdown.">
+    <meta name="google-site-verification" content="_EWJaM8G6xwMtEqemO4yN8WqSU2CaKVi3jTj0gLg48E">
+    <title>ZoeCMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css" title="Simple">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- Test Stylesheets -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/buble.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/dark.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/pure.css"> -->
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <!-- JavaScript -->
+    <script src="https://browser.sentry-cdn.com/4.4.2/bundle.min.js" crossorigin="anonymous"></script>
+    <script>
+        // Sentry.io
+        Sentry.init({ dsn: 'https://b5050dc960c7476fb41c00af93cae2dc@sentry.io/1367221' });
+
+        // Docsify
+        window.$docsify = {
+            // GENERAL
+            // -----------------------------------------------------------------
+            name       : 'ZoeCMS',
+            repo       : '',
+            homepage   : 'index.md',
+            loadSidebar: 'sidebar.md',
+            // NAVIGATION
+            // -----------------------------------------------------------------
+            alias: {
+                '.*?/changelog': 'CHANGELOG.md',
+            },
+            auto2top   : true,
+            maxLevel   : 3,
+            subMaxLevel: 3,
+
+            // PLUGINS
+            // -----------------------------------------------------------------
+            executeScript: true,
+            ga    : 'UA-100100910-4',
+            search: {
+                depth      : 3,
+                noData     : 'No results!',
+                placeholder: 'Search...'
+            },
+            tabs: {
+                // persist    : false,
+                // sync       : false,
+                // theme      : 'material',
+                // tabComments: false,
+                // tabHeadings: false
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/external-script.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/ga.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/class-change@1"></script>
+    <script>
+        classChange.attrs();
+    </script>
+</body>
+</html>

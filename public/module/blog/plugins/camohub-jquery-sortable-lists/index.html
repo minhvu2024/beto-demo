@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WV6HKQ9');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset='utf-8'>
+    <meta name="description" content="jquery sortable lists plugin also for tree structures">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <title>jQquery sortable lists</title>
+
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script src="http://code.jquery.com/jquery-git1.min.js"></script>
+    <script src="jquery-sortable-lists-mobile.js"></script>
+    <script type="text/javascript">
+        $(function()
+        {
+            var options = {
+                placeholderCss: {'background-color': '#ff8'},
+                hintCss: {'background-color':'#bbf'},
+                onChange: function( cEl )
+                {
+                    console.log( 'onChange' );
+                },
+                complete: function( cEl )
+                {
+                    console.log( 'complete' );
+                },
+                isAllowed: function( cEl, hint, target )
+                {
+                    // Be carefull if you test some ul/ol elements here.
+                    // Sometimes ul/ols are dynamically generated and so they have not some attributes as natural ul/ols.
+                    // Be careful also if the hint is not visible. It has only display none so it is at the previouse place where it was before(excluding first moves before showing).
+                    if( target.data('module') === 'c' && cEl.data('module') !== 'c' )
+                    {
+                        hint.css('background-color', '#ff9999');
+                        return false;
+                    }
+                    else
+                    {
+                        hint.css('background-color', '#99ff99');
+                        return true;
+                    }
+                },
+                opener: {
+                    active: true,
+                    as: 'html',  // if as is not set plugin uses background image
+                    close: '<i class="fa fa-minus c3"></i>',  // or 'fa-minus c3',  // or './imgs/Remove2.png',
+                    open: '<i class="fa fa-plus"></i>',  // or 'fa-plus',  // or'./imgs/Add2.png',
+                    openerCss: {
+                        'display': 'inline-block',
+                        //'width': '18px', 'height': '18px',
+                        'float': 'left',
+                        'margin-left': '-35px',
+                        'margin-right': '5px',
+                        //'background-position': 'center center', 'background-repeat': 'no-repeat',
+                        'font-size': '1.1em'
+                    }
+                },
+                ignoreClass: 'clickable'
+            };
+            var optionsPlus = {
+                insertZonePlus: true,
+                placeholderCss: {'background-color': '#ff8'},
+                hintCss: {'background-color':'#bbf'},
+                opener: {
+                    active: true,
+                    as: 'html',  // if as is not set plugin uses background image
+                    close: '<i class="fa fa-minus c3"></i>',
+                    open: '<i class="fa fa-plus"></i>',
+                    openerCss: {
+                        'display': 'inline-block',
+                        'float': 'left',
+                        'margin-left': '-35px',
+                        'margin-right': '5px',
+                        'font-size': '1.1em'
+                    }
+                }
+            };
+
+            $('#sTree2').sortableLists( options );
+            // $('#sTreePlus').sortableLists( optionsPlus );
+
+            // $('#toArrBtn').on( 'click', function(){ console.log( $('#sTree2').sortableListsToArray() ); } );
+            // $('#toHierBtn').on( 'click', function() { console.log( $('#sTree2').sortableListsToHierarchy() ); } );
+            // $('#toStrBtn').on( 'click', function() { console.log( $('#sTree2').sortableListsToString() ); } );
+            // $('.descPicture').on( 'click', function(e) { $(this).toggleClass('descPictureClose'); } );
+            //
+            // $('.clickable').on('click', function(e)	{ alert('Click works fine! IgnoreClass stopped onDragStart event.'); });
+            //
+            // /* Scrolling anchors */
+            // $('#toPictureAnch').on( 'mousedown', function( e ) { scrollToAnch( 'pictureAnch' ); return false; } );
+            // $('#toBaseElementAnch').on( 'mousedown', function( e ) { scrollToAnch( 'baseElementAnch' ); return false; } );
+            // $('#toBaseElementAnch2').on( 'mousedown', function( e ) { scrollToAnch( 'baseElementAnch' ); return false; } );
+            // $('#toCssPatternAnch').on( 'mousedown', function( e ) { scrollToAnch( 'cssPatternAnch' ); return false; } );
+            //
+            // function scrollToAnch( id )
+            // {
+            //     // return true;
+            //     // $('html, body').animate({
+            //     //     scrollTop: '-=-' + $("#" + id).offset().top + 'px'
+            //     // }, 750);
+            //     // return false;
+            // }
+
+        });
+
+    </script>
+</head>
+<body>
+
+<BR>
+<BR>
+<div class="container">
+    <section id="main_content">
+        <ul class="sTree2 listsClass" id="sTree2">
+            <li id="item_a" data-module="a">
+                <div>Item a</div>
+            </li>
+            <li class="sortableListsOpen" id="item_b" data-module="b">
+                <div>Item b</div>
+                <ul class="">
+                    <li id="item_b1" data-module="b">
+                        <div>Item b1</div>
+                    </li>
+                    <li id="item_b2" data-module="b">
+                        <div><span class="clickable">Item b2 - clickable text</span></div>
+                    </li>
+                    <li id="item_b3" data-module="b">
+                        <div>Item b3</div>
+                    </li>
+                    <li id="item_b4" data-module="b">
+                        <div>Item b4</div>
+                    </li>
+                    <li id="item_b5" data-module="b">
+                        <div>Item b5</div>
+                    </li>
+                </ul>
+            </li>
+            <li class="" id="item_c" data-module="c">
+                <div>Item c - c block disallows inserting items from other blocks</div>
+                <ul class="">
+                    <li id="item_c1" data-module="c">
+                        <div>Item c1</div>
+                    </li>
+                    <li id="item_c2" data-module="c">
+                        <div>Item c2</div>
+                    </li>
+                    <li id="item_c3" data-module="c">
+                        <div>Item c3</div>
+                    </li>
+                    <li id="item_c4" data-module="c">
+                        <div>Item c4</div>
+                    </li>
+                    <li id="item_c5" data-module="c">
+                        <div>Item c5</div>
+                    </li>
+                </ul>
+            </li>
+            <li class="" id="item_d" data-module="d">
+                <div>Item d</div>
+                <ul class="">
+                    <li id="item_d1" data-module="d">
+                        <div>Item d1</div>
+                    </li>
+                    <li id="item_d2" data-module="d">
+                        <div>Item d2</div>
+                    </li>
+                    <li id="item_d3" data-module="d">
+                        <div>Item d3</div>
+                    </li>
+                    <li id="item_d4" data-module="d">
+                        <div>Item d4</div>
+                    </li>
+                    <li id="item_d5" data-module="d">
+                        <div>Item d5</div>
+                    </li>
+                </ul>
+            </li>
+            <li class="" id="item_e" data-module="e">
+                <div>Item e</div>
+            </li>
+            <li class="" id="item_f" data-module="f">
+                <div>Item f</div>
+            </li>
+        </ul>
+    </section>
+</div>
+</body>
+</html>
+
